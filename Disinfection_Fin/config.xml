@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SysConfig describe="系统配置">
+  <LastUserName name="" />
+  <LastThemeColor index="27,161,226" />
+  <COM comnum="3" />
+  <StrokeThickness st="50" />
+  <DataBase sql="dbsource1"/>
+  <TestModel tm="true"/>
+  <TrainModel TM="true"/>
+</SysConfig>

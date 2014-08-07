@@ -1,0 +1,101 @@
+﻿<Window x:Class="TrainingWin.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Title="TrainingWindow" ResizeMode="NoResize" Width="1280" Height="1024" WindowStyle="None" WindowState="Maximized"  PreviewKeyDown="Window_PreviewKeyDown" >
+    <Grid Name="gd_Main">
+        <Grid.RowDefinitions>
+            <RowDefinition Name="row1" Height="150"/>
+            <RowDefinition Name="row2"/>            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="col1" Width="1062"/>
+            <ColumnDefinition Name="col2"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Pic/top.jpg"/>
+            </Grid.Background>
+            <Image HorizontalAlignment="Left" Source="/Pic/logo.png" Height="100" Margin="70,22,0,0" VerticalAlignment="Top" Width="100"/>
+            <Label Content="模拟消毒培训系统" Foreground="CadetBlue" FontSize="35" HorizontalAlignment="Left" Margin="186,42,0,0" VerticalAlignment="Top" Height="61" Width="338" FontWeight="Bold"/>
+
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <!--<Grid.Background>
+                <ImageBrush ImageSource="/Pic/111_02.png"/>
+            </Grid.Background>-->
+            <Label Name="lbName" Content="Label" FontSize="15" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="102" Foreground="#FF237217" Margin="0,9,16,0"/>
+            <Label Content="登  录 ID:" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Foreground="#FF237217" Margin="0,9,118,0"/>
+            <Button Content="完  成" HorizontalAlignment="Right" Background="DarkSeaGreen"  VerticalAlignment="Bottom"  Width="91" Height="40"  MouseRightButtonDown="Finish_Button_Down" Margin="0,0,10,10"/>
+            <Button Content="双击退出" HorizontalAlignment="Right" Background="DarkSeaGreen" VerticalAlignment="Bottom" Width="91"  MouseDoubleClick="Button_MouseDoubleClick" Height="40" Margin="0,0,10,61"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <!--模型图片加载处理-->
+            <Grid x:Name="backg2" HorizontalAlignment="Left" VerticalAlignment="Top" Panel.ZIndex="4" Width="1062" Height="850" Margin="0,0,0,0">
+                <Canvas x:Name="c4">
+                    <Canvas.Background>
+                        <SolidColorBrush x:Name="s2" Color="White" Opacity="0"/>
+                    </Canvas.Background>
+                </Canvas>
+            </Grid>
+            <Grid  x:Name="backg"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="1062" Height="850" Margin="0,0,0,0">
+            </Grid>
+            <!--中间画板-->
+            <Grid x:Name="c1g" Opacity="0.7" HorizontalAlignment="Left" VerticalAlignment="Top"  Width="600" Height="850" Margin="240,0,0,0">
+                <Canvas x:Name="c1"  Loaded="c1_Loaded" Width="600" Height="570" Margin="0,200,0,80">
+                    <!--Margin=0,218,0,80原始数据-->
+                    <Canvas.Background>
+                        <SolidColorBrush x:Name="s1" Color="White" Opacity="0.01"/>
+                    </Canvas.Background>
+                </Canvas>
+            </Grid>
+            <!--右边画板-->
+            <Grid x:Name="c2g" Opacity="0.7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="330" Height="850" Margin="720,0,0,0">
+                <Canvas x:Name="c2" Loaded="c2_Loaded" Width="330" Height="570" Margin="0,200,0,80">
+                    <Canvas.Background>
+                        <SolidColorBrush Color="White" Opacity="0.01"/>
+                    </Canvas.Background>
+                </Canvas>
+            </Grid>
+            <!--左边画板-->
+            <Grid x:Name="c3g" Opacity="0.7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="330" Height="850" Margin="0,0,0,0">
+                <Canvas x:Name="c3" Loaded="c3_Loaded" Width="330" Height="570" Margin="0,200,0,80">
+                    <Canvas.Background>
+                        <SolidColorBrush Color="White" Opacity="0.01"/>
+                    </Canvas.Background>
+                </Canvas>
+            </Grid>
+        </Grid>
+        <Grid Name="gd11" Grid.Column="1" Panel.ZIndex="9" Grid.Row="1">
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+            </Grid.Background>
+            <!--考试用时-->
+            <TextBlock x:Name="txt_timer" Height="25" Margin="1176,10,10,733" VerticalAlignment="Top"/>
+            <Border Name="bd1" BorderBrush="DarkSeaGreen"  BorderThickness="1" HorizontalAlignment="Left" Height="717" VerticalAlignment="Top" Width="202" Margin="10,153,0,0">
+                <StackPanel Name="sp" HorizontalAlignment="Left" Margin="0,0,-2,-20" Orientation="Vertical" Height="703" Width="202" VerticalAlignment="Top">
+                    <!--错误提示-->
+                    <TextBlock x:Name="Errtb1" FontSize="18"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="25" Width="84"/>
+                    <TextBlock x:Name="txt_err_explain1" HorizontalAlignment="Left" VerticalAlignment="Top" Text="" TextWrapping="Wrap" FontSize="25" Foreground="Red" Width="191" Height="160" Margin="1,0,0,0" />
+                    <TextBlock x:Name="Errtb2" FontSize="18" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="25" Width="84"/>
+                    <TextBlock x:Name="txt_err_explain2" HorizontalAlignment="Left" VerticalAlignment="Top" Text="" TextWrapping="Wrap" FontSize="25" Foreground="Red" Width="155" Height="160" Margin="1,0,0,0" />
+                    <TextBlock x:Name="Errtb3" FontSize="18"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="25" Width="84"/>
+                    <!--错误解释-->
+                    <TextBlock x:Name="txt_err_explain3" HorizontalAlignment="Left" VerticalAlignment="Top" Text="" TextWrapping="Wrap" FontSize="25" Foreground="Red" Width="155" Height="160" Margin="1,0,0,0" />
+                </StackPanel>
+            </Border>
+            
+            <!--获取移动鼠标坐标-->
+            <TextBlock x:Name="Positionxy" HorizontalAlignment="Right" Margin="0,-113,86,0" TextWrapping="Wrap" Text="x:y" VerticalAlignment="Top" Height="21" Width="100"/>
+            <!--没有消毒比例-->
+            <Label x:Name="tt1" Content="" HorizontalAlignment="Right" Margin="1149,555,0,0" VerticalAlignment="Top"/>
+            <Image HorizontalAlignment="Left" Source="/Pic/111_04.png" Height="30" Margin="10,15,0,0" VerticalAlignment="Top" Width="30"/>
+            <Label Content="下按获取压力" Foreground="DodgerBlue" FontSize="25" HorizontalAlignment="Left" Margin="50,7,0,0" VerticalAlignment="Top" Width="158"/>
+            <!--获取压力-->
+            <TextBlock x:Name="tb1" FontSize="50" Foreground="YellowGreen" Margin="32,74,68,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="zh-cn" Text="0"/></TextBlock>
+        </Grid>
+    </Grid>
+</Window>
